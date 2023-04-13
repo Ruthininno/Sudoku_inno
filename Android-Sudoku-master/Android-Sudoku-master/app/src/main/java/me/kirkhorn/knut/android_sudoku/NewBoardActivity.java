@@ -104,7 +104,7 @@ public class NewBoardActivity extends AppCompatActivity implements CellGroupFrag
     }
 
     @Override
-    public void onFragmentInteraction(int groupId, int cellId, View view) {
+    public void onFragmentInteraction(int groupId, int cellId, View view, TextView txt) {
         clickedCell = (TextView) view;
         clickedCellId = cellId;
         clickedGroup = groupId;

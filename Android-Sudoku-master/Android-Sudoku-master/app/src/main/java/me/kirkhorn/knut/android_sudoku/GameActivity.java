@@ -1,6 +1,7 @@
 package me.kirkhorn.knut.android_sudoku;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -34,7 +35,10 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
     private int clickedCellId;
     private Board startBoard;
     private Board currentBoard;
+    int textViews[] = new int[]{R.id.button_1, R.id.button_2, R.id.button_3, R.id.button_4,
+            R.id.button_5, R.id.button_6, R.id.button_7, R.id.button_8, R.id.button_9, R.id.button_remove};
 
+    Button buttonCheckBoard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,33 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         startBoard = chooseRandomBoard(boards);
         currentBoard = new Board();
         currentBoard.copyValues(startBoard.getGameCells());
+
+
+        for (int textView1 : textViews) {
+            TextView textKeyboard = findViewById(textView1);
+            textKeyboard.setOnClickListener(v -> {
+                int inputNum = 0;
+                switch (v.getId()) {
+                    case R.id.button_1 : inputNum = 1; break;
+                    case R.id.button_2 : inputNum = 2; break;
+                    case R.id.button_3 : inputNum = 3; break;
+                    case R.id.button_4 : inputNum = 4; break;
+                    case R.id.button_5 : inputNum = 5; break;
+                    case R.id.button_6 : inputNum = 6; break;
+                    case R.id.button_7 : inputNum = 7; break;
+                    case R.id.button_8 : inputNum = 8; break;
+                    case R.id.button_9 : inputNum = 9; break;
+                }
+
+                Intent intent = new Intent();
+                intent.putExtra("chosenNumber", inputNum);
+               // intent.putExtra("isUnsure", checkBoxChecked);
+                setResult(RESULT_OK, intent);
+                finish();
+            });
+        }
+
+
 
         int cellGroupFragments[] = new int[]{R.id.cellGroupFragment, R.id.cellGroupFragment2, R.id.cellGroupFragment3, R.id.cellGroupFragment4,
                 R.id.cellGroupFragment5, R.id.cellGroupFragment6, R.id.cellGroupFragment7, R.id.cellGroupFragment8, R.id.cellGroupFragment9};
@@ -208,7 +239,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
             int row = ((clickedGroup-1)/3)*3 + (clickedCellId/3);
             int column = ((clickedGroup-1)%3)*3 + ((clickedCellId)%3);
 
-            Button buttonCheckBoard = findViewById(R.id.buttonCheckBoard);
+            buttonCheckBoard = findViewById(R.id.buttonCheckBoard);
             if (data.getBooleanExtra("removePiece", false)) {
                 clickedCell.setText("");
                 clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
@@ -236,16 +267,71 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
     }
 
     @Override
-    public void onFragmentInteraction(int groupId, int cellId, View view) {
+    public void onFragmentInteraction(int groupId, int cellId, View view, TextView txt) {
         clickedCell = (TextView) view;
         clickedGroup = groupId;
         clickedCellId = cellId;
+
+        int row = ((clickedGroup-1)/3)*3 + (clickedCellId/3);
+        int column = ((clickedGroup-1)%3)*3 + ((clickedCellId)%3);
+
         Log.i(TAG, "Clicked group " + groupId + ", cell " + cellId);
         if (!isStartPiece(groupId, cellId)) {
-            Intent intent = new Intent("me.kirkhorn.knut.ChooseNumberActivity");
-            startActivityForResult(intent, 1);
-        } else {
-            Toast.makeText(this, getString(R.string.start_piece_error), Toast.LENGTH_SHORT).show();
+            for (int textView1 : textViews) {
+                TextView textKeyboard = findViewById(textView1);
+                textKeyboard.setOnClickListener(v -> {
+                    int inputNum = 0;
+                    switch (v.getId()) {
+                        case R.id.button_1:
+                            inputNum = 1;
+                            break;
+                        case R.id.button_2:
+                            inputNum = 2;
+                            break;
+                        case R.id.button_3:
+                            inputNum = 3;
+                            break;
+                        case R.id.button_4:
+                            inputNum = 4;
+                            break;
+                        case R.id.button_5:
+                            inputNum = 5;
+                            break;
+                        case R.id.button_6:
+                            inputNum = 6;
+                            break;
+                        case R.id.button_7:
+                            inputNum = 7;
+                            break;
+                        case R.id.button_8:
+                            inputNum = 8;
+                            break;
+                        case R.id.button_9:
+                            inputNum = 9;
+                            break;
+                        case R.id.button_remove:
+                            if (!clickedCell.getText().toString().equals("")) {
+                                currentBoard.setValue(row, column, 0);
+                                clickedCell.setText("");
+                                //buttonCheckBoard.setVisibility(View.INVISIBLE);
+                            }
+                            break;
+                    }
+
+                    clickedCell.setText(String.valueOf(inputNum));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+                    }
+                    currentBoard.setValue(row, column, inputNum);
+
+                });
+
+                }
+            } else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+            }
+                Toast.makeText(this, getString(R.string.start_piece_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

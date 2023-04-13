@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Sudoku</string>
+    <string name="app_name">InnoSudoku</string>
     <string name="sudoku">Sudoku</string>
     <string name="norwegian_description">Et bilde av et norskt flagg</string>
     <string name="british_description">Et bilde av et britisk flagg</string>

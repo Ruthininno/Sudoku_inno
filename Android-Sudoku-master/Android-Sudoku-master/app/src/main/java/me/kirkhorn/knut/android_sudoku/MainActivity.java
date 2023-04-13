@@ -20,12 +20,21 @@ public class MainActivity extends AppCompatActivity {
     private boolean currentEnglish = true;
     private final String TAG = "MainActivity";
 
+    TextView startGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        checkCurrentLocale();
+        setContentView(R.layout.inno_activity_main);
+        //checkCurrentLocale();
+        startGame = findViewById(R.id.startButton);
+
+        startGame.setOnClickListener(v -> {
+            Intent intent = new Intent("me.kirkhorn.knut.GameActivity");
+            intent.putExtra("difficulty", 0);
+            startActivity(intent);
+        });
     }
+
 
     private void checkCurrentLocale() {
         Log.i(TAG, "Checking current locale");
@@ -68,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-        refreshViewLanguages();
+        //refreshViewLanguages();
     }
 
     private void refreshViewLanguages() {

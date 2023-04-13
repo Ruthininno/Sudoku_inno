@@ -36,20 +36,31 @@ public class CellGroupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_cell_group, container, false);
+        view = inflater.inflate(R.layout.fragment_cell_layout, container, false);
 
         //Set textview click listeners
         int textViews[] = new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4,
                          R.id.textView5, R.id.textView6, R.id.textView7, R.id.textView8, R.id.textView9};
         for (int textView1 : textViews) {
             TextView textView = view.findViewById(textView1);
+            //textView.setFocusableInTouchMode(true);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mListener.onFragmentInteraction(groupId, Integer.parseInt(view.getTag().toString()), view);
+
+                    textView.setBackgroundColor(Color.LTGRAY);
+                    mListener.onFragmentInteraction(groupId, Integer.parseInt(view.getTag().toString()), view,textView );
                 }
             });
+//            if (!textView.isFocused()) {
+//                textView.setBackgroundColor(R.drawable.table_border_cell);
+//            } else {
+//                textView.setBackgroundColor(Color.GRAY);
+//            }
         }
+
+
+
         return view;
     }
 
@@ -62,8 +73,8 @@ public class CellGroupFragment extends Fragment {
                 R.id.textView5, R.id.textView6, R.id.textView7, R.id.textView8, R.id.textView9};
         TextView currentView = view.findViewById(textViews[position]);
         currentView.setText(String.valueOf(value));
-        currentView.setTextColor(Color.BLACK);
-        currentView.setTypeface(null, Typeface.BOLD);
+//        currentView.setTextColor(Color.BLACK);
+//        currentView.setTypeface(null, Typeface.BOLD);
     }
 
     public boolean checkGroupCorrect() {
@@ -100,6 +111,6 @@ public class CellGroupFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(int groupId, int cellId, View view);
+        void onFragmentInteraction(int groupId, int cellId, View view, TextView tx);
     }
 }

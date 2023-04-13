@@ -3,13 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:onClick="onGoBackButtonClicked"
+        android:text="@string/go_back_button"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"/>
 
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:stretchColumns="*">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="30dp">
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -19,26 +31,25 @@
             <fragment
                 android:id="@+id/cellGroupFragment"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:tag="0"
-                android:layout_weight="1" />
+                 />
 
             <fragment
                 android:id="@+id/cellGroupFragment2"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:tag="1"
-                android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="1" />
 
             <fragment
                 android:id="@+id/cellGroupFragment3"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:tag="2"
-                android:layout_weight="1" />
+                />
 
         </TableRow>
 
@@ -49,26 +60,23 @@
             <fragment
                 android:id="@+id/cellGroupFragment4"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:tag="3"
-                android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="3" />
 
             <fragment
                 android:id="@+id/cellGroupFragment5"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:tag="4"
-                android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="4" />
 
             <fragment
                 android:id="@+id/cellGroupFragment6"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:tag="5"
-                android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="5" />
         </TableRow>
 
         <TableRow
@@ -78,38 +86,31 @@
             <fragment
                 android:id="@+id/cellGroupFragment7"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:tag="6"
                 android:layout_weight="1" />
 
             <fragment
                 android:id="@+id/cellGroupFragment8"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:tag="7"
                 android:layout_weight="1" />
 
             <fragment
                 android:id="@+id/cellGroupFragment9"
                 android:name="me.kirkhorn.knut.android_sudoku.fragments.CellGroupFragment"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:tag="8"
                 android:layout_weight="1" />
         </TableRow>
 
     </TableLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:onClick="onGoBackButtonClicked"
-        android:text="@string/go_back_button"
-        android:layout_marginStart="16dp" />
+
 
     <Button
         android:id="@+id/buttonShowInstructions"
@@ -122,20 +123,156 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.965"
-        android:layout_marginStart="200dp" />
+        android:layout_marginStart="200dp"
+        android:visibility="gone"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        >
+
+        <TextView
+            android:id="@+id/button_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="1"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="2"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="3"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="4"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="5"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/button_6"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="6"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_7"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="7"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_8"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="8"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/button_9"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="9"
+            android:textColor="@color/black"
+            android:background="@drawable/button_bg"
+            android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/button_remove"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="X"
+                android:textColor="@color/black"
+                android:background="@drawable/button_bg"
+                android:gravity="center"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonCheckBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="180dp"
         android:text="@string/check_board"
         android:visibility="invisible"
-        android:onClick="onCheckBoardButtonClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822"
-        android:layout_marginStart="180dp" />
+        android:layout_gravity="center_horizontal"
+        android:onClick="onCheckBoardButtonClicked"/>
 
 </LinearLayout>
