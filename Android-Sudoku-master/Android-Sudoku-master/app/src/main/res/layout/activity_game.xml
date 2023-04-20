@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
         android:id="@+id/button"
@@ -26,7 +25,8 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
             <fragment
                 android:id="@+id/cellGroupFragment"
@@ -264,12 +264,13 @@
                 android:textColor="@color/black"
                 android:background="@drawable/button_bg"
                 android:gravity="center"/>
+
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonCheckBoard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:text="@string/check_board"
         android:visibility="invisible"
         android:layout_gravity="center_horizontal"

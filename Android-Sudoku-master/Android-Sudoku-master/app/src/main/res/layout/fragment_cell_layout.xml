@@ -11,33 +11,33 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:text=""
             android:tag="0"
              />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="1"
             android:text="" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView3"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="2"
             android:text="" />
@@ -49,32 +49,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView4"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="3"
             android:text="" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView5"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="4"
             android:text="" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView6"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="5"
             android:text=""/>
@@ -85,17 +85,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView7"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="6"
             android:text="" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView8"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -105,12 +105,12 @@
             android:tag="7"
             android:text="" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/textView9"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:gravity="center"
-            android:background="@drawable/table_border_cell"
+            android:background="@drawable/button_focus"
             android:focusable="true"
             android:tag="8"
             android:text=""

@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -104,8 +106,8 @@ public class NewBoardActivity extends AppCompatActivity implements CellGroupFrag
     }
 
     @Override
-    public void onFragmentInteraction(int groupId, int cellId, View view, TextView txt) {
-        clickedCell = (TextView) view;
+    public void onFragmentInteraction(int groupId, int cellId, View view, Button txt) {
+        clickedCell = (Button) view;
         clickedCellId = cellId;
         clickedGroup = groupId;
         Log.i(TAG, "Clicked group " + groupId + ", cell " + cellId);

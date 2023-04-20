@@ -20,7 +20,7 @@
         android:layout_marginTop="100dp"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="게임 시작"
+        android:text="@string/new_game"
         android:textSize="20sp"
         android:background="@drawable/button_bg"/>
 </LinearLayout>

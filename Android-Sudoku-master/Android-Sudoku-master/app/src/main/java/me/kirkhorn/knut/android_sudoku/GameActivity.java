@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -232,9 +233,9 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
         startActivity(intent);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         if (requestCode == 1 && resultCode == RESULT_OK) {
             int row = ((clickedGroup-1)/3)*3 + (clickedCellId/3);
             int column = ((clickedGroup-1)%3)*3 + ((clickedCellId)%3);
@@ -242,7 +243,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
             buttonCheckBoard = findViewById(R.id.buttonCheckBoard);
             if (data.getBooleanExtra("removePiece", false)) {
                 clickedCell.setText("");
-                clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+                clickedCell.setBackgroundDrawable(getResources().getDrawable(R.drawable.table_border_cell));
                 currentBoard.setValue(row, column, 0);
                 buttonCheckBoard.setVisibility(View.INVISIBLE);
             } else {
@@ -250,12 +251,12 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
                 clickedCell.setText(String.valueOf(number));
                 currentBoard.setValue(row, column, number);
 
-                boolean isUnsure = data.getBooleanExtra("isUnsure", false);
-                if (isUnsure) {
-                    clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell_unsure));
-                } else {
-                    clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
-                }
+//                boolean isUnsure = data.getBooleanExtra("isUnsure", false);
+//                if (isUnsure) {
+//                    clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell_unsure));
+//                } else {
+//                    clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+//                }
 
                 if (currentBoard.isBoardFull()) {
                     buttonCheckBoard.setVisibility(View.VISIBLE);
@@ -264,17 +265,50 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
                 }
             }
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
+//    @Override
+//    protected void (int requestCode, int resultCode, Intent data) {
+//        if (requestCode == 1 && resultCode == RESULT_OK) {
+//            int row = ((clickedGroup-1)/3)*3 + (clickedCellId/3);
+//            int column = ((clickedGroup-1)%3)*3 + ((clickedCellId)%3);
+//
+//            buttonCheckBoard = findViewById(R.id.buttonCheckBoard);
+//            if (data.getBooleanExtra("removePiece", false)) {
+//                clickedCell.setText("");
+//                clickedCell.setBackgroundDrawable(getResources().getDrawable(R.drawable.table_border_cell));
+//                currentBoard.setValue(row, column, 0);
+//                buttonCheckBoard.setVisibility(View.INVISIBLE);
+//            } else {
+//                int number = data.getIntExtra("chosenNumber", 1);
+//                clickedCell.setText(String.valueOf(number));
+//                currentBoard.setValue(row, column, number);
+//
+////                boolean isUnsure = data.getBooleanExtra("isUnsure", false);
+////                if (isUnsure) {
+////                    clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell_unsure));
+////                } else {
+////                    clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+////                }
+//
+//                if (currentBoard.isBoardFull()) {
+//                    buttonCheckBoard.setVisibility(View.VISIBLE);
+//                } else {
+//                    buttonCheckBoard.setVisibility(View.INVISIBLE);
+//                }
+//            }
+//        }
+//    }
+
     @Override
-    public void onFragmentInteraction(int groupId, int cellId, View view, TextView txt) {
-        clickedCell = (TextView) view;
+    public void onFragmentInteraction(int groupId, int cellId, View view, Button txt) {
+        clickedCell = (Button) view;
         clickedGroup = groupId;
         clickedCellId = cellId;
 
         int row = ((clickedGroup-1)/3)*3 + (clickedCellId/3);
         int column = ((clickedGroup-1)%3)*3 + ((clickedCellId)%3);
-
         Log.i(TAG, "Clicked group " + groupId + ", cell " + cellId);
         if (!isStartPiece(groupId, cellId)) {
             for (int textView1 : textViews) {
@@ -310,6 +344,7 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
                             inputNum = 9;
                             break;
                         case R.id.button_remove:
+
                             if (!clickedCell.getText().toString().equals("")) {
                                 currentBoard.setValue(row, column, 0);
                                 clickedCell.setText("");
@@ -330,8 +365,11 @@ public class GameActivity extends AppCompatActivity implements CellGroupFragment
             } else{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 clickedCell.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+
             }
                 Toast.makeText(this, getString(R.string.start_piece_error), Toast.LENGTH_SHORT).show();
         }
+
+
     }
 }

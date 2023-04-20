@@ -1,14 +1,15 @@
 package me.kirkhorn.knut.android_sudoku.fragments;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Typeface;
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
@@ -42,21 +43,25 @@ public class CellGroupFragment extends Fragment {
         int textViews[] = new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4,
                          R.id.textView5, R.id.textView6, R.id.textView7, R.id.textView8, R.id.textView9};
         for (int textView1 : textViews) {
-            TextView textView = view.findViewById(textView1);
+            Button textView = view.findViewById(textView1);
             //textView.setFocusableInTouchMode(true);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    textView.setBackgroundColor(Color.LTGRAY);
+                    textView.setSelected(true);
+                    textView.requestFocus();
+                   // textView.setBackgroundColor(Color.LTGRAY);
                     mListener.onFragmentInteraction(groupId, Integer.parseInt(view.getTag().toString()), view,textView );
+//                    if (textView.isFocused()) {
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                            textView.setBackground(getResources().getDrawable(R.drawable.table_border_cell));
+//                        }
+//                    }
                 }
             });
-//            if (!textView.isFocused()) {
-//                textView.setBackgroundColor(R.drawable.table_border_cell);
-//            } else {
-//                textView.setBackgroundColor(Color.GRAY);
-//            }
+
+
         }
 
 
@@ -111,6 +116,6 @@ public class CellGroupFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(int groupId, int cellId, View view, TextView tx);
+        void onFragmentInteraction(int groupId, int cellId, View view, Button tx);
     }
 }
